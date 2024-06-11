@@ -1,0 +1,70 @@
+def obter_resposta(pergunta, opcoes):
+    print(pergunta)
+    for numero, opcao in enumerate(opcoes, start=1):
+        print(f"({numero}) {opcao}")
+    resposta = int(input("Escolha uma opção: "))
+    return resposta
+
+def encontrar_combinacao(respostas):
+
+  combinacoes = {
+    (1, 1, 1): ("Fiat", "Mobi", "Hatch"),
+    (1, 1, 2): ("Fiat", "Mobi", "Sedan"),
+    (1, 1, 3): ("Fiat", "Mobi", "SUV"),
+    (1, 2, 1): ("Chevrolet", "Onix", "Hatch"),
+    (1, 2, 2): ("Chevrolet", "Onix", "Sedan"),
+    (1, 2, 3): ("Chevrolet", "Onix", "SUV"),
+    (1, 3, 1): ("Volkswagen", "Gol", "Hatch"),
+    (1, 3, 2): ("Volkswagen", "Gol", "Sedan"),
+    (1, 3, 3): ("Volkswagen", "Gol", "SUV"),
+    (2, 1, 1): ("Hyundai", "HB20", "Hatch"),
+    (2, 1, 2): ("Hyundai", "HB20", "Sedan"),
+    (2, 1, 3): ("Hyundai", "HB20", "SUV"),
+    (2, 2, 1): ("Kia", "Picanto", "Hatch"),
+    (2, 2, 2): ("Kia", "Picanto", "Sedan"),
+    (2, 2, 3): ("Kia", "Picanto", "SUV"),
+    (2, 3, 1): ("Renault", "Kwid", "Hatch"),
+    (2, 3, 2): ("Renault", "Kwid", "Sedan"),
+    (2, 3, 3): ("Renault", "Kwid", "SUV"),
+    (3, 1, 1): ("Fiat", "Argo", "Hatch"),
+    (3, 1, 2): ("Fiat", "Argo", "Sedan"),
+    (3, 1, 3): ("Fiat", "Argo", "SUV"),
+    (3, 2, 1): ("Chevrolet", "Cruze", "Hatch"),
+    (3, 2, 2): ("Chevrolet", "Cruze", "Sedan"),
+    (3, 2, 3): ("Chevrolet", "Cruze", "SUV"),
+    (3, 3, 1): ("Volkswagen", "Jetta", "Hatch"),
+    (3, 3, 2): ("Volkswagen", "Jetta", "Sedan"),
+    (3, 3, 3): ("Volkswagen", "Jetta", "SUV"),
+    
+  }
+
+  if tuple(respostas[:3]) in combinacoes:
+    return combinacoes.get(tuple(respostas[:3]))
+  else:
+    return ("Marca genérica", "Modelo genérico", "Tipo genérico")
+
+def main():
+    perguntas = [
+        ("Qual é o seu orçamento para o carro?", ["Até R$ 50.000", "R$ 50.000 a R$ 100.000", "Acima de R$ 100.000"]),
+        ("Qual o tipo de carro que você prefere?", ["Hatch", "Sedan", "SUV"]),
+        ("Qual o tamanho do carro ideal para você?", ["Compacto", "Médio", "Grande"]),
+        ("Você precisa de um carro com boa economia de combustível?", ["Sim", "Não"]),
+        ("Você precisa de um carro com bom espaço interno?", ["Sim", "Não"]),
+        ("Você precisa de um carro com bom desempenho?", ["Sim", "Não"]),
+        ("Você precisa de um carro com boa tecnologia?", ["Sim", "Não"]),
+        ("Você precisa de um carro com boa segurança?", ["Sim", "Não"]),
+        ("Você prefere um carro novo ou usado?", ["Novo", "Usado"]),
+    ]
+
+    respostas = []
+for pergunta, opcoes in perguntas:
+    respostas.append(obter_resposta(pergunta, opcoes))
+
+    Marca, Modelo, Estilo = encontrar_combinacao(respostas)
+    print(f"\nCom base nas suas respostas, o melhor carro é:")
+    print(f"Marca: {Marca}")
+    print(f"Modelo: {Modelo}")
+    print(f"Estilo: {Estilo}")
+
+if __name__ == "__main__":
+    main()
